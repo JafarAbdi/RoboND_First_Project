@@ -10,14 +10,20 @@ in this image it shown how the function detected the rock and it gives a good re
 ![Detect Rocks](https://github.com/JafarAbdi/RoboND_First_Project/blob/master/detect_rocks.png?raw=true)
 
 2- to detect the obstacles I had two options 
+
    1- by calling cv2.bitwise_not which will select the color that are not terrain 
+
    2- by using http://docs.opencv.org/trunk/d9/d61/tutorial_py_morphological_ops.html function (this method was recommended by a fellow in slack channel)
    in my code I used the second method
 
 the steps used in detect obstacles function are as follow 
+
 1- detect the terrain area (left up corner image)
+
 2- dilating the terrain area with one iteration (right up corner)
+
 3- applying bitwise_not function to the original terrian (left down corner)
+
 4- taking bitwise_and between the dilated terrain and terrian not (right down corner)
 
 ![Detect Obstacles](https://github.com/JafarAbdi/RoboND_First_Project/blob/master/detect_obstacle.png?raw=true)
