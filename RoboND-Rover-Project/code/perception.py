@@ -29,6 +29,14 @@ def detect_rock(img):
     
     return mask
 
+# Detecting obstacles function input: terrian, output: obstacle
+def detect_obstacle(img):
+    kernel = np.ones((5,5))
+    #terrain = color_thresh(img)
+    obstacle = cv2.dilate(img,kernel,iterations=1) 
+    obstacle = cv2.bitwise_and(obstacle,cv2.bitwise_not(img))
+    return obstacle
+
 # Define a function to convert to rover-centric coordinates
 def rover_coords(binary_img):
     # Identify nonzero pixels
@@ -123,11 +131,11 @@ def perception_step(Rover):
     # 3) Apply color threshold to identify navigable terrain/obstacles/rock samples
     #detect terrain
     terrain = color_thresh(warped)
+    #this line for smoothing terrain
     terrain = cv2.morphologyEx(terrain,cv2.MORPH_OPEN,kernel,iterations=1)
     #terrain = cv2.morphologyEx(terrain,cv2.MORPH_CLOSE,kernel,iterations=1)
     #detect obstacles
-    obstacle = cv2.dilate(terrain,kernel,iterations=1) 
-    obstacle = cv2.bitwise_and(obstacle,cv2.bitwise_not(terrain))
+    obstacle = detect_obstacle(terrain)
     #detect rocks
     rock = detect_rock(warped)
 
