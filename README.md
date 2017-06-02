@@ -91,3 +91,7 @@ if Rover.near_sample and not Rover.picking_up:
 to decision_step function
 
 and I'll add new variable to Rover class which store the magnitude of the distance from the rover to samples and pick them from min to max distance after that return to start position 
+
+------------------------------------------------------
+
+Just to mention in the previous submision the reviewer said that there's an error when running drive_rover.py I tried it multiple time in my computer without any errors :)
