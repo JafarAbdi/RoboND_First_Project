@@ -51,13 +51,22 @@ I'm working now on udacity challenge
 to pick the samples I added 
 
 if Rover.near_sample and not Rover.picking_up:
-                # Set mode to "stop" and hit the brakes!
+
+               # Set mode to "stop" and hit the brakes!
+
                 Rover.throttle = 0
+                
                 # Set brake to stored brake value
+                
                 Rover.brake = Rover.brake_set
+                
                 Rover.steer = 0
+                
                 Rover.send_pickup = True
+                
                 Rover.samples_picked[np.argmin(Rover.dis_to_samples)] = 1
+
+
 to decision_step function
 
 and I'll add new variable to Rover class which store the magnitude of the distance from the rover to samples and pick them from min to max distance after that return to start position 
