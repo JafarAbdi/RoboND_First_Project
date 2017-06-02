@@ -3,16 +3,37 @@
 
 Notebook Analysis
 
-1- to identify the rocks I writed a function called detect_rock() I converted the image to HSV format after that run inRange function to detect the color that I specify (Here yellow)
+1- to identify the rocks I writed a function called detect_rock() I converted the image to HSV format after that run inRange function to detect the color that I specify (Here yellow) I found the color range by runing the code in the end of this page http://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_colorspaces/py_colorspaces.html#how-to-find-hsv-values-to-track
 
-2- to detect the obstacles I had two options 
-   1- by calling cv2.bitwise_not which will select the color that are not terrain 
-   2- by using http://docs.opencv.org/trunk/d9/d61/tutorial_py_morphological_ops.html function (this method was recommended by a fellow in slack channel)
-   in my code I used the second method
+in this image it shown how the function detected the rock and it gives a good result
+
+![Detect Rocks](https://github.com/JafarAbdi/RoboND_First_Project/blob/master/detect_rocks.png?raw=true)
 
 ---------------------------------------------
 
-1- I did the steps that mentioned in process_image function
+2- to detect the obstacles I had two options 
+
+   1- by calling cv2.bitwise_not which will select the color that are not terrain 
+
+   2- by using http://docs.opencv.org/trunk/d9/d61/tutorial_py_morphological_ops.html function (this method was recommended by a fellow in slack channel)
+   in my code I used the second method
+
+the steps used in detect obstacles function are as follow 
+
+   1- detect the terrain area (left up corner image)
+
+   2- dilating the terrain area with one iteration (right up corner)
+
+   3- applying bitwise_not function to the original terrian (left down corner)
+
+   4- taking bitwise_and between the dilated terrain and terrian not (right down corner)
+
+![Detect Obstacles](https://github.com/JafarAbdi/RoboND_First_Project/blob/master/detect_obstacle.png?raw=true)
+
+
+---------------------------------------------
+
+1- for process_image function in notebook I did the same procedure for perception_step function in perception.py except rather than using Rover I used the Databucket instance data and the input image
 
 Autonomous Navigation and Mapping
 
